@@ -26,7 +26,7 @@ public class NameLogger : MonoBehaviour
 
     public void LogNames(ExamSubject subject)
     {
-        var IDs = subject.IDs.text;
+        var IDs = subject.id;
         int r = 0, c = 0;
         //Debug.Log(IDs);
         string[] lineArrays = IDs.Split("\n");
@@ -34,6 +34,7 @@ public class NameLogger : MonoBehaviour
         for (int i = 0; i < lineArrays.Length; i++)
         {
             string[] nameIDPair = lineArrays[i].Split(",");
+            if (nameIDPair.Length != 2) continue;
             //Debug.Log($"{r} and {c}");
             if (indicators[r,c].isNull)
             {

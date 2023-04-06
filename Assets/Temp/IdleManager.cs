@@ -14,7 +14,10 @@ public class ExamSubject
     public int startHour, startMinute;
     public int endHour, endMinute;
     public int indicatorY;
+    [Obsolete]
     public TextAsset IDs;
+    [Multiline]
+    public string id;
 
     public int isBeforeOrAfter
     {
@@ -57,6 +60,20 @@ public class ExamSubject
         //if (time < 0) return time + 1;
         return time;
     }
+
+    public int CompareTo(ExamSubject other)
+    {
+        if (other.date < date) return 1;
+        if (other.date > date) return -1;
+        if (other.startHour < startHour) return -1;
+        if (other.startHour == startHour && other.startMinute < startMinute) return -1;
+        //if (currentTime.Hour > endHour) return 1;
+        //if (currentTime.Hour == endHour && currentTime.Minute > endMinute) return 1;
+        // if (currentTime.Minute < startMinute) return -1;
+        // if (currentTime.Minute > endMinute) return 1;
+        //if (currentTime.Second > 0) return 1;
+        return 0;
+    }
 }
 
 public class IdleManager : MonoBehaviour
@@ -67,10 +84,12 @@ public class IdleManager : MonoBehaviour
     public Text idleTimeIndicator, idleMinutesIndicator;
     public Text examTimeIndicator, examMinutesIndicator;
     public Text[] subjectListeners;
+    public Text BasicInfoHolder;
     public GameObject[] IDLE, EXAM;
     public Image COVER, cover2;
     public int delayMinutes = 2;
     public int duration = 1;
+    public int startIndicatorY, perRowHeight;
     //public RowIndicator[] rows;
     public NameLogger logger;
     public Transform indicator;
@@ -84,6 +103,8 @@ public class IdleManager : MonoBehaviour
         Application.targetFrameRate = 30;
         currentTime = DateTime.Now;
         //Instance = this;
+        Init();
+
         index = 0;
         do
         {
@@ -103,6 +124,12 @@ public class IdleManager : MonoBehaviour
         //     Display.displays[i].Activate();
         //     Screen.SetResolution(Display.displays[i].renderingWidth, Display.displays[i].renderingHeight, true);
         // }
+    }
+
+    private void Init()
+    {
+        BasicInfoHolder.text = DataLoader.LoadBasicInfo();
+        subjects =  DataLoader.LoadSubjects(startIndicatorY, perRowHeight, BasicInfoHolder.text);
     }
 
     void OnDisable()
@@ -182,7 +209,7 @@ public class IdleManager : MonoBehaviour
         time = currentTime.Hour.ToString() + time; if (currentTime.Hour < 10) time = "0" + time;
         if (currentTime.Minute < 10) time = time + "0"; time = time + currentTime.Minute.ToString(); 
         idleTimeIndicator.text = examTimeIndicator.text = "当前时间：" + time;
-        if (CurrentSubject.date != currentTime.Day)
+        if (CurrentSubject.date != currentTime.Day || CurrentSubject.MinutesFromEnd(currentTime) < 0)
             idleMinutesIndicator.text = "距离开考：NaN";
         else if (CurrentSubject.MinutesFromStart(currentTime) < 60)
             idleMinutesIndicator.text = $"距离开考：{CurrentSubject.MinutesFromStart(currentTime)}min {59 - currentTime.Second}s";
@@ -198,6 +225,14 @@ public class IdleManager : MonoBehaviour
                 examMinutesIndicator.text = $"距离结束：{CurrentSubject.MinutesFromEnd(currentTime)}min {59 - currentTime.Second}s";
         else
             examMinutesIndicator.text = $"距离结束：{CurrentSubject.HoursFromEnd(currentTime)}h {CurrentSubject.MinutesFromEnd(currentTime) % 60}min";
+
+
+
+        //Key Commands
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            EnterExam(CurrentSubject.isBeforeOrAfter == 1);
+        }
     }
 
     private void EnterExam(bool enter)

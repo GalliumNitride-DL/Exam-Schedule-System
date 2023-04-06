@@ -3585,6 +3585,7 @@ MonoBehaviour:
     endMinute: 1
     indicatorY: 0
     IDs: {fileID: 4900000, guid: 4a02714f3723c584d865764599d09164, type: 3}
+    id: 
   - fullName: "\u6D4B\u8BD5\u79D1\u76EE\u4E00  18:30 - 20:10"
     date: 7
     startHour: 18
@@ -3593,6 +3594,7 @@ MonoBehaviour:
     endMinute: 10
     indicatorY: 100
     IDs: {fileID: 4900000, guid: 993e20e051df4664cad1c1c54d0e0c6d, type: 3}
+    id: 
   - fullName: "\u6D4B\u8BD5\u79D1\u76EE\u4E8C  20:30 - 21:30"
     date: 7
     startHour: 20
@@ -3601,6 +3603,7 @@ MonoBehaviour:
     endMinute: 30
     indicatorY: 200
     IDs: {fileID: 4900000, guid: 4a02714f3723c584d865764599d09164, type: 3}
+    id: 
   - fullName: "\u6D4B\u8BD5\u79D1\u76EE\u4E09  18:20 - 21:10"
     date: 8
     startHour: 18
@@ -3609,6 +3612,7 @@ MonoBehaviour:
     endMinute: 10
     indicatorY: 70
     IDs: {fileID: 4900000, guid: d11fb97732caee7408c0c50dc5a02160, type: 3}
+    id: 
   - fullName: "\u6D4B\u8BD5\u79D1\u76EE\u56DB  20:30 - 21:30"
     date: 8
     startHour: 20
@@ -3617,6 +3621,7 @@ MonoBehaviour:
     endMinute: 30
     indicatorY: 150
     IDs: {fileID: 4900000, guid: 993e20e051df4664cad1c1c54d0e0c6d, type: 3}
+    id: 
   - fullName: "\u8BED\u6587  08:00 - 10:30"
     date: 9
     startHour: 8
@@ -3625,6 +3630,7 @@ MonoBehaviour:
     endMinute: 30
     indicatorY: 340
     IDs: {fileID: 4900000, guid: d11fb97732caee7408c0c50dc5a02160, type: 3}
+    id: 
   - fullName: "\u5316\u5B66  11:00 - 12:15"
     date: 9
     startHour: 11
@@ -3633,6 +3639,7 @@ MonoBehaviour:
     endMinute: 15
     indicatorY: 270
     IDs: {fileID: 4900000, guid: 993e20e051df4664cad1c1c54d0e0c6d, type: 3}
+    id: 
   - fullName: "\u82F1\u8BED  14:00 - 16:00"
     date: 9
     startHour: 14
@@ -3641,6 +3648,7 @@ MonoBehaviour:
     endMinute: 0
     indicatorY: 130
     IDs: {fileID: 4900000, guid: d11fb97732caee7408c0c50dc5a02160, type: 3}
+    id: 
   - fullName: "\u653F\u6CBB  16:30 - 17:45"
     date: 9
     startHour: 16
@@ -3649,6 +3657,7 @@ MonoBehaviour:
     endMinute: 45
     indicatorY: 60
     IDs: {fileID: 4900000, guid: bb6fa844b19db9a48882139a2f11d99f, type: 3}
+    id: 
   - fullName: "\u7269\u7406 / \u5386\u53F2  09:00 - 10:15"
     date: 10
     startHour: 9
@@ -3657,6 +3666,7 @@ MonoBehaviour:
     endMinute: 15
     indicatorY: -150
     IDs: {fileID: 4900000, guid: d11fb97732caee7408c0c50dc5a02160, type: 3}
+    id: 
   - fullName: "\u5730\u7406  10:45 - 12:00"
     date: 10
     startHour: 10
@@ -3665,6 +3675,7 @@ MonoBehaviour:
     endMinute: 0
     indicatorY: -220
     IDs: {fileID: 4900000, guid: bb6fa844b19db9a48882139a2f11d99f, type: 3}
+    id: 
   - fullName: "\u6570\u5B66  14:00 - 16:00"
     date: 10
     startHour: 14
@@ -3673,6 +3684,7 @@ MonoBehaviour:
     endMinute: 0
     indicatorY: -360
     IDs: {fileID: 4900000, guid: d11fb97732caee7408c0c50dc5a02160, type: 3}
+    id: 
   - fullName: "\u751F\u7269  16:30 - 17:45"
     date: 10
     startHour: 16
@@ -3681,6 +3693,7 @@ MonoBehaviour:
     endMinute: 45
     indicatorY: -430
     IDs: {fileID: 4900000, guid: 4a02714f3723c584d865764599d09164, type: 3}
+    id: 
   idleTimeIndicator: {fileID: 448738314}
   idleMinutesIndicator: {fileID: 23390671}
   examTimeIndicator: {fileID: 226120415}
@@ -3688,6 +3701,7 @@ MonoBehaviour:
   subjectListeners:
   - {fileID: 1337110144}
   - {fileID: 510794085}
+  BasicInfoHolder: {fileID: 657749434}
   IDLE:
   - {fileID: 37662530}
   - {fileID: 1679345357}
@@ -4055,7 +4069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7069,7 +7083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.27058825}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
