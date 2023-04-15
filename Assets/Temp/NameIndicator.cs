@@ -27,6 +27,12 @@ public class NameIndicator : MonoBehaviour
         originalPos = this.transform.localPosition;
     }
 
+    public void ClearName()
+    {
+        name1 = "N/A";
+        examID = "0000000";
+    }
+
     public void ConductAnimation()
     {
         

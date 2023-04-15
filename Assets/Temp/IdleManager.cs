@@ -65,8 +65,9 @@ public class ExamSubject
     {
         if (other.date < date) return 1;
         if (other.date > date) return -1;
-        if (other.startHour < startHour) return -1;
-        if (other.startHour == startHour && other.startMinute < startMinute) return -1;
+        if (other.startHour < startHour) return 1;
+        if (other.startHour > startHour) return -1;
+        if (other.startHour == startHour && other.startMinute < startMinute) return 1;
         //if (currentTime.Hour > endHour) return 1;
         //if (currentTime.Hour == endHour && currentTime.Minute > endMinute) return 1;
         // if (currentTime.Minute < startMinute) return -1;
@@ -231,6 +232,11 @@ public class IdleManager : MonoBehaviour
         //Key Commands
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            if (index < subjects.Length - 1)
+            {
+                index++;
+                CurrentSubject = subjects[index];
+            }
             EnterExam(CurrentSubject.isBeforeOrAfter == 1);
         }
     }

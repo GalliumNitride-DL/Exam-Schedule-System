@@ -1,0 +1,6 @@
+SubjectName=µÿ¿Ì
+Date=18
+StartTime=16 30
+EndTime=17 45
+
+N/A,0000000

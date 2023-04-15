@@ -26,6 +26,11 @@ public class NameLogger : MonoBehaviour
 
     public void LogNames(ExamSubject subject)
     {
+        foreach (var indicator in indicators)
+        {
+            indicator.ClearName();
+        }
+
         var IDs = subject.id;
         int r = 0, c = 0;
         //Debug.Log(IDs);
@@ -38,7 +43,7 @@ public class NameLogger : MonoBehaviour
             //Debug.Log($"{r} and {c}");
             if (indicators[r,c].isNull)
             {
-                indicators[r,c].ConductAnimation();
+                //indicators[r,c].ConductAnimation();
                 c++;
                 if (c >= 7) { c = 0; r++; }
                 if (r >= 6) { break; }
@@ -49,12 +54,19 @@ public class NameLogger : MonoBehaviour
                 indicators[r,c].examID = nameIDPair[1];
             }
             
-            indicators[r,c].ConductAnimation();
+            //indicators[r,c].ConductAnimation();
             c++;
             if (c >= 7) { c = 0; r++; }
             if (r >= 6) { break; }
+
+            
             
             //await UniTask.Delay(TimeSpan.FromSeconds(0.2));
+        }
+
+        foreach (var indicator in indicators)
+        {
+            indicator.ConductAnimation();
         }
 
     }
