@@ -8,7 +8,7 @@ using System;
 public class NameLogger : MonoBehaviour
 {
     public RowIndicator[] rows;
-    public NameIndicator[,] indicators = new NameIndicator[6,7];
+    public NameIndicator[,] indicators = new NameIndicator[5,6];
     private float suppressionTime;
     public float fuck = 2f;
 
@@ -31,22 +31,31 @@ public class NameLogger : MonoBehaviour
             indicator.ClearName();
         }
 
+        // for (int i = 0; i < rows.Length; i++)
+        // {
+        //     for (int j = 0; j < rows[i].sons.Length; j++)
+        //     {
+        //         Debug.Log(i.ToString() + " , " + j.ToString());
+        //         indicators[i,j] = rows[i].sons[j];
+        //     }
+        // }
+
         var IDs = subject.id;
         int r = 0, c = 0;
         //Debug.Log(IDs);
-        string[] lineArrays = IDs.Split("\n");
+        string[] lineArrays = IDs.Split('\n');
         //Debug.Log(lineArrays[0]);
         for (int i = 0; i < lineArrays.Length; i++)
         {
-            string[] nameIDPair = lineArrays[i].Split(",");
+            string[] nameIDPair = lineArrays[i].Split(',');
             if (nameIDPair.Length != 2) continue;
             //Debug.Log($"{r} and {c}");
             if (indicators[r,c].isNull)
             {
                 //indicators[r,c].ConductAnimation();
                 c++;
-                if (c >= 7) { c = 0; r++; }
-                if (r >= 6) { break; }
+                if (c >= 6) { c = 0; r++; }
+                if (r >= 5) { break; }
             }
             if (nameIDPair.Length == 2)
             {
@@ -56,8 +65,8 @@ public class NameLogger : MonoBehaviour
             
             //indicators[r,c].ConductAnimation();
             c++;
-            if (c >= 7) { c = 0; r++; }
-            if (r >= 6) { break; }
+            if (c >= 6) { c = 0; r++; }
+            if (r >= 5) { break; }
 
             
             
@@ -85,9 +94,9 @@ public class NameLogger : MonoBehaviour
         // switch (az)
         // {
         //     case 1:
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 5; i++)
                 {
-                    for (int j = 0; j < 7; j++)
+                    for (int j = 0; j < 6; j++)
                     {
                         indicators[i,j].ConductAnimation();
                         await UniTask.Delay(TimeSpan.FromSeconds(0.075));

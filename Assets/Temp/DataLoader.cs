@@ -33,7 +33,7 @@ public static class DataLoader
 
             subject.id = data;
             
-            var lineArrays = data.Split("\n");
+            var lineArrays = data.Split('\n');
             //Apply Basic Info
             var shortName = lineArrays[0].Split('=')[1];
             var date = int.Parse(lineArrays[1].Split('=')[1]);
@@ -58,7 +58,7 @@ public static class DataLoader
 
         foreach (var sbj in output)
         {
-            while (i < rows.Length && !rows[i].Contains('-'))
+            while (i < rows.Length && !rows[i].Contains("-"))
             {
                 i++;
             }
