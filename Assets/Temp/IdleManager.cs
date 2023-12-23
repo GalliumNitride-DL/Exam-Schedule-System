@@ -227,11 +227,11 @@ public class IdleManager : MonoBehaviour
         //Debug.Log(CurrentSubject.MinutesFromEnd(currentTime));
         if (CurrentSubject.MinutesFromEnd(currentTime) < 20)
             if (CurrentSubject.MinutesFromEnd(currentTime) < 0)
-                examMinutesIndicator.text = $"距离结束：-{Mathf.Abs(CurrentSubject.MinutesFromEnd(currentTime) + 1)}min {currentTime.Second}s";
+                examMinutesIndicator.text = $"剩余时间：-{Mathf.Abs(CurrentSubject.MinutesFromEnd(currentTime) + 1)}min {currentTime.Second}s";
             else
-                examMinutesIndicator.text = $"距离结束：{CurrentSubject.MinutesFromEnd(currentTime)}min {59 - currentTime.Second}s";
+                examMinutesIndicator.text = $"剩余时间：{CurrentSubject.MinutesFromEnd(currentTime)}min {59 - currentTime.Second}s";
         else
-            examMinutesIndicator.text = $"距离结束：{CurrentSubject.HoursFromEnd(currentTime)}h {CurrentSubject.MinutesFromEnd(currentTime) % 60}min";
+            examMinutesIndicator.text = $"剩余时间：{CurrentSubject.HoursFromEnd(currentTime)}h {CurrentSubject.MinutesFromEnd(currentTime) % 60}min";
 
 
 
