@@ -103,6 +103,7 @@ public class IdleManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 30;
+        QualitySettings.SetQualityLevel(0);
         currentTime = DateTime.Now;
         //Instance = this;
         Init();
