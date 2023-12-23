@@ -14,23 +14,34 @@ public class NameIndicator : MonoBehaviour
 {
     public string name1 = "N/A";
     public string examID = "0000000";
-    public bool isNull = false;
+    //public bool isNull = false;
     [HideInInspector] public Text text;
     private Vector3 originalPos;
-    public static float animOffset = 20;
+    public static float animOffset = 0;
     public static float duration = 0.75f;
     public static ShowStatus status;
+    public Text seatNumberText;
+    private static GameObject seatNumberPrefab;
+    private static Vector3 numberPos = new Vector3(-175f, 0, 0);
 
     private void Awake()
     {
         text = this.GetComponent<Text>();
         originalPos = this.transform.localPosition;
+        if (seatNumberPrefab == null)
+        {
+            seatNumberPrefab = Resources.Load<GameObject>("SeatNumber");
+        }
+        var seatNumberObj = Instantiate(seatNumberPrefab, Vector3.zero, Quaternion.identity, transform);
+        seatNumberText = seatNumberObj.GetComponentInChildren<Text>();
+        seatNumberObj.transform.localPosition = numberPos;
     }
 
     public void ClearName()
     {
         name1 = "N/A";
         examID = "0000000";
+        seatNumberText.text = "空";
     }
 
     public void ConductAnimation()

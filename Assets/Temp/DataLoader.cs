@@ -7,9 +7,22 @@ using UnityEngine.Networking;
 public static class DataLoader
 {
     private const string BasicInfoFile = "BasicInfo.txt";
+    private const string ExamHeaderFile = "ExamHeader.txt";
     public static string LoadBasicInfo()
     {
         var path = "file:///" + Application.streamingAssetsPath + '/' + BasicInfoFile;
+        var request = UnityWebRequest.Get(path);
+        var operation = request.SendWebRequest();
+        while (!operation.isDone);
+
+        if (request.result != UnityWebRequest.Result.Success) return string.Empty;
+
+        else return request.downloadHandler.text;
+    }
+
+    public static string LoadExamHeader()
+    {
+        var path = "file:///" + Application.streamingAssetsPath + '/' + ExamHeaderFile;
         var request = UnityWebRequest.Get(path);
         var operation = request.SendWebRequest();
         while (!operation.isDone);
@@ -27,13 +40,13 @@ public static class DataLoader
 
         foreach (var file in files)
         {
-            if (file.Name == BasicInfoFile) continue;
+            if (file.Name == BasicInfoFile || file.Name == ExamHeaderFile) continue;
             var data = File.ReadAllText(path + '/' + file.Name);
             var subject = new ExamSubject();
 
             subject.id = data;
             
-            var lineArrays = data.Split("\n");
+            var lineArrays = data.Split('\n');
             //Apply Basic Info
             var shortName = lineArrays[0].Split('=')[1];
             var date = int.Parse(lineArrays[1].Split('=')[1]);
@@ -58,7 +71,7 @@ public static class DataLoader
 
         foreach (var sbj in output)
         {
-            while (i < rows.Length && !rows[i].Contains('-'))
+            while (i < rows.Length && !rows[i].Contains("-"))
             {
                 i++;
             }

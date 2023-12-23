@@ -12,6 +12,7 @@ public class NameLogger : MonoBehaviour
     private float suppressionTime;
     public float fuck = 2f;
 
+
     private void Awake()
     {
         for (int i = 0; i < rows.Length; i++)
@@ -34,25 +35,28 @@ public class NameLogger : MonoBehaviour
         var IDs = subject.id;
         int r = 0, c = 0;
         //Debug.Log(IDs);
-        string[] lineArrays = IDs.Split("\n");
+        string[] lineArrays = IDs.Split('\n');
+        int seatNumber = 0;
         //Debug.Log(lineArrays[0]);
         for (int i = 0; i < lineArrays.Length; i++)
         {
-            string[] nameIDPair = lineArrays[i].Split(",");
-            if (nameIDPair.Length != 2) continue;
+            string[] nameIDPair = lineArrays[i].Split(',');
+            
+
             //Debug.Log($"{r} and {c}");
-            if (indicators[r,c].isNull)
+            //if (indicators[r,c].isNull)
+            if (lineArrays[i].StartsWith("N"))
             {
                 //indicators[r,c].ConductAnimation();
                 c++;
                 if (c >= 7) { c = 0; r++; }
                 if (r >= 6) { break; }
             }
-            if (nameIDPair.Length == 2)
-            {
-                indicators[r,c].name1 = nameIDPair[0];
-                indicators[r,c].examID = nameIDPair[1];
-            }
+            if (nameIDPair.Length != 2) continue;
+            seatNumber++;
+            indicators[r,c].name1 = nameIDPair[0];
+            indicators[r,c].examID = nameIDPair[1];
+            indicators[r,c].seatNumberText.text = seatNumber.ToString();
             
             //indicators[r,c].ConductAnimation();
             c++;

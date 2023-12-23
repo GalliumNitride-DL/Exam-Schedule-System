@@ -94,6 +94,7 @@ public class IdleManager : MonoBehaviour
     //public RowIndicator[] rows;
     public NameLogger logger;
     public Transform indicator;
+    public Text examHeader, roomHeader; //十八考场 40人
 
     int index = 0;
     internal static DateTime currentTime = DateTime.MinValue;
@@ -110,7 +111,7 @@ public class IdleManager : MonoBehaviour
         do
         {
             CurrentSubject = subjects[index];
-            Debug.Log($"Check {CurrentSubject.fullName}'s isBefore, got {CurrentSubject.isBeforeOrAfter}");
+            //Debug.Log($"Check {CurrentSubject.fullName}'s isBefore, got {CurrentSubject.isBeforeOrAfter}");
             index++;
         }
         while (CurrentSubject.isBeforeOrAfter == 1 && index < subjects.Length);
@@ -130,6 +131,11 @@ public class IdleManager : MonoBehaviour
     private void Init()
     {
         BasicInfoHolder.text = DataLoader.LoadBasicInfo();
+        var headers = DataLoader.LoadExamHeader().Split('\n');
+        if (headers.Length < 2) return;
+        examHeader.text = headers[0];
+        roomHeader.text = headers[1];
+
         subjects =  DataLoader.LoadSubjects(startIndicatorY, perRowHeight, BasicInfoHolder.text);
     }
 
@@ -218,7 +224,7 @@ public class IdleManager : MonoBehaviour
             idleMinutesIndicator.text = $"距离开考：{CurrentSubject.HoursFromStart(currentTime)}h {CurrentSubject.MinutesFromStart(currentTime) % 60}min";
 
         //In Exam
-        Debug.Log(CurrentSubject.MinutesFromEnd(currentTime));
+        //Debug.Log(CurrentSubject.MinutesFromEnd(currentTime));
         if (CurrentSubject.MinutesFromEnd(currentTime) < 20)
             if (CurrentSubject.MinutesFromEnd(currentTime) < 0)
                 examMinutesIndicator.text = $"距离结束：-{Mathf.Abs(CurrentSubject.MinutesFromEnd(currentTime) + 1)}min {currentTime.Second}s";
